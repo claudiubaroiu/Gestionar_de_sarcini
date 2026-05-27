@@ -5,15 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestionar de sarcini</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm"
+     style="background: linear-gradient(90deg, #0d6efd, #6610f2);">
+
     <div class="container">
-        <span class="navbar-brand fw-bold">Gestionar de sarcini</span>
-        <div id="info-utilizator" class="d-none align-items-center gap-3">
-            <span id="email-utilizator" class="text-white small"></span>
-            <button class="btn btn-outline-light btn-sm" onclick="deconecteaza()">Deconectare</button>
+
+        <!-- Logo / titlu -->
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" >
+            <span style="font-size: 1.5rem;"></span>
+            <span>Gestionar de sarcini</span>
+        </a>
+
+        <!-- Sectiunea utilizator -->
+        <div id="info-utilizator"
+             class="d-none align-items-center gap-3">
+
+            <!-- About -->
+            <button class="btn btn-light btn-sm fw-semibold px-3 rounded-pill shadow-sm"
+                    onclick="afiseazaAbout()">
+                👤 About Me
+            </button>
+
+            <!-- Email -->
+            <div class="d-flex align-items-center gap-2 text-white">
+                <span style="font-size: 1.2rem;">📧</span>
+                <span id="email-utilizator" class="small fw-semibold"></span>
+            </div>
+
+            <!-- Logout -->
+            <button class="btn btn-outline-light btn-sm px-3 rounded-pill"
+                    onclick="deconecteaza()">
+                ⎋ Deconectare
+            </button>
+
         </div>
     </div>
 </nav>
@@ -70,8 +98,65 @@
         </div>
     </div>
 
+        <!-- -------- Sectiunea about me -------- -->
+
+<div id="sectiune-about" class="d-none">
+    <div class="card border-0 shadow-lg overflow-hidden">
+        <div class="card-body p-0">
+
+            <div class="bg-primary text-white text-center p-5">
+                <img 
+                    src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                    alt="Avatar"
+                    class="rounded-circle bg-white p-2 mb-3"
+                    width="120"
+                >
+                <h2 class="fw-bold mb-1">Salut, sunt Claudiu 👋</h2>
+            </div>
+
+            <div class="p-4">
+                <h4 class="fw-bold text-primary">Despre aplicație</h4>
+                <p>
+                    Această aplicație este un gestionar de sarcini realizat pentru organizarea activităților zilnice.
+                    Utilizatorii își pot crea cont, se pot autentifica și își pot administra propriile sarcini.
+                </p>
+
+                <div class="row text-center mt-4">
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 bg-light rounded shadow-sm h-100">
+                            <h5>⚡ FastAPI</h5>
+                            <p class="small mb-0">Backend rapid și modern</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 bg-light rounded shadow-sm h-100">
+                            <h5>🗄️ SQLite</h5>
+                            <p class="small mb-0">Bază de date simplă și eficientă</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 bg-light rounded shadow-sm h-100">
+                            <h5>🎨 Bootstrap</h5>
+                            <p class="small mb-0">Interfață curată și responsive</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <button class="btn btn-primary mt-3" onclick="inapoiLaAplicatie()">
+                    ← Înapoi la aplicație
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
     <!-- -------- Sectiunea de sarcini -------- -->
     <div id="sectiune-sarcini" class="d-none">
+        
 
         <div class="card mb-4">
             <div class="card-body">
@@ -362,8 +447,22 @@ async function salveazaSarcina(id) {
         return div.innerHTML;
     }
 
+    // -------- About me ---------
+
+    function afiseazaAbout() {
+    document.getElementById("sectiune-sarcini").classList.add("d-none");
+    document.getElementById("sectiune-about").classList.remove("d-none");
+}
+
+function inapoiLaAplicatie() {
+    document.getElementById("sectiune-about").classList.add("d-none");
+    document.getElementById("sectiune-sarcini").classList.remove("d-none");
+}
+
     // -------- Initializare --------
     document.addEventListener("DOMContentLoaded", actualizeazaUI);
+
+    
 </script>
 </body>
 </html>
